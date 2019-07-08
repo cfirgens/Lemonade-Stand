@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Lemonade_Stand
 {
-    public abstract class Customer
+    public class YoungChild : Customer
     {
+
         //Has a
-        
         string whichWeather;
         string tastePreference;
         int howMuchIce;
@@ -17,10 +17,10 @@ namespace Lemonade_Stand
 
         //Constructor
 
+        //Can Do
+        public override void PurchaseLemonade()
+        {
 
-        //Can do
-
-        public abstract void PurchaseLemonade();
-       
+        }
     }
 }

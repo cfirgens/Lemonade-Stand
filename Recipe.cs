@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Lemonade_Stand
 {
-    class Game
+    public class Recipe
     {
+        double price;
 
-        public void RunGame()
+        
+        public double GetPrice(double playerPrice )
         {
-            Weather weather = new Weather();
-
-            weather.CombinedWeather();
-
+            return playerPrice;
         }
     }
 }
