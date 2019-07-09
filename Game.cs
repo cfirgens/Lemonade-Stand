@@ -15,6 +15,13 @@ namespace Lemonade_Stand
 
             weather.CombinedWeather();
 
+            Recipe recipe = new Recipe();
+
+            recipe.GetRecipe();
+
+
+            Console.ReadLine();
+
         }
     }
 }

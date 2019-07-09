@@ -20,7 +20,10 @@ namespace Lemonade_Stand
         //Can Do
         public override void PurchaseLemonade()
         {
+            if(tastePreference == "Sweet")
+            {
 
+            }
         }
     }
 }
