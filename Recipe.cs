@@ -12,7 +12,7 @@ namespace Lemonade_Stand
         int howManyLemons = 4;
         int howMuchSugar = 4;
         int howMuchIce = 4;
-
+        string taste;
         
         public double GetPrice()
         {
@@ -68,16 +68,34 @@ namespace Lemonade_Stand
                 return GetIce();
             }
         }
+
+        public string GetTaste()
+        {
+            if (howManyLemons > howMuchSugar)
+            {
+                return taste = "Sour";
+            }
+            else if (howMuchSugar > howManyLemons)
+            {
+                return taste = "Sweet";
+            }
+            else
+            {
+                return taste = "normal";
+            }
+        }
         public void GetRecipe()
         {
             GetPrice();
             GetIce();
             GetLemons();
             GetSugar();
-            Console.WriteLine(howMuchSugar);
-            Console.WriteLine(price);
-            Console.WriteLine(howManyLemons);
-            Console.WriteLine(howMuchIce);
+            GetTaste();
+            Console.WriteLine("sugar: " + howMuchSugar);
+            Console.WriteLine("price: " + price);
+            Console.WriteLine("lemons: " + howManyLemons);
+            Console.WriteLine("ice: " + howMuchIce);
+            Console.WriteLine("taste: " + taste);
         }
     }
 }

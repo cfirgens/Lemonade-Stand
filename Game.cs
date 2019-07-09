@@ -8,7 +8,7 @@ namespace Lemonade_Stand
 {
     class Game
     {
-
+        List<Customer> Customers = new List<Customer>();
         public void RunGame()
         {
             Weather weather = new Weather();
@@ -17,11 +17,34 @@ namespace Lemonade_Stand
 
             Recipe recipe = new Recipe();
 
-            recipe.GetRecipe();
+            //recipe.GetRecipe();
+
+            GetCustomers();
+
+            foreach(Customer customerName in Customers)
+            {
+                Console.WriteLine(customerName);
+            }
 
 
             Console.ReadLine();
 
+            
+
         }
+
+        public void GetCustomers()
+        {
+            Random rng = new Random();
+            int numberOfCustomers;
+            numberOfCustomers = rng.Next(75,110);
+
+            for ( int i=0; i < numberOfCustomers; i++)
+            {
+                Customer customer = new Customer(rng);
+                Customers.Add(customer);
+            }
+
+        }   
     }
 }
