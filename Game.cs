@@ -19,17 +19,7 @@ namespace Lemonade_Stand
 
             //recipe.GetRecipe();
 
-            GetCustomers();
-
-            foreach(Customer customerName in Customers)
-            {
-                Console.WriteLine(customerName);
-            }
-
-
-            Console.ReadLine();
-
-            
+            GetCustomers();            
 
         }
 
