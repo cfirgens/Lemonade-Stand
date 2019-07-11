@@ -8,5 +8,32 @@ namespace Lemonade_Stand
 {
     class Player
     {
+        int lemons;
+        int sugar;
+        int iceCubes;
+        double money;
+
+        public double Money
+        {
+            get => money;
+
+            set
+            {
+                if(value <= 0)
+                {
+                    money = 0;
+                    Console.WriteLine("You can't go below 0 dollars");
+                }
+                else
+                {
+                    money = value;
+                }
+            }
+        }
+
+
+        public void PurchaseInventory()
+        { }
+
     }
 }

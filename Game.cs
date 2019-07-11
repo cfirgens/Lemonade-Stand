@@ -13,14 +13,24 @@ namespace Lemonade_Stand
         {
             Weather weather = new Weather();
 
-            weather.CombinedWeather();
+            weather.GetPredictedWeather();
+            Console.WriteLine("Today's predicted weather is: " + weather.GetPredictedWeather());
+            weather.GetActualWeather();
+            Console.WriteLine("Today's actual weather is: " + weather.GetActualWeather());
 
             Recipe recipe = new Recipe();
 
+            Console.ReadLine();
+
             //recipe.GetRecipe();
 
-            GetCustomers();            
+            GetCustomers();
+            Store store = new Store();
 
+            store.SellLemons();
+
+
+            Console.ReadLine();
         }
 
         public void GetCustomers()
