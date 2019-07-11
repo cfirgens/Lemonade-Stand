@@ -9,14 +9,19 @@ namespace Lemonade_Stand
     class Game
     {
         List<Customer> Customers = new List<Customer>();
+        Random rng;
+
         public void RunGame()
         {
-            Weather weather = new Weather();
+            
+            Weather weather = new Weather();            
 
             weather.GetPredictedWeather();
             Console.WriteLine("Today's predicted weather is: " + weather.GetPredictedWeather());
-            weather.GetActualWeather();
+            string actualWeather = weather.GetActualWeather();
             Console.WriteLine("Today's actual weather is: " + weather.GetActualWeather());
+
+            Day day = new Day(actualWeather);
 
             Recipe recipe = new Recipe();
 
@@ -27,7 +32,7 @@ namespace Lemonade_Stand
             GetCustomers();
             Store store = new Store();
 
-            store.SellLemons();
+            store.GoShopping(20.00);
 
 
             Console.ReadLine();

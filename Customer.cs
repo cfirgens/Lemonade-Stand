@@ -16,6 +16,7 @@ namespace Lemonade_Stand
         public int temperaturePreference;
         public double pricePreference;
         public string customerName;
+       
 
 
 

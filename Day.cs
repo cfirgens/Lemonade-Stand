@@ -8,14 +8,13 @@ namespace Lemonade_Stand
 {
     class Day
     {
-        string todayWeather;
+   
         int todayCustomer;
 
-        public Day(string weather, int temperature, int customers)
+        public Day(string weather)
         {
-            todayWeather = weather + temperature;
-            todayCustomer = customers;
-
+            
+            Console.WriteLine("Today's weather is " + weather + " predicted number of customers are: " + todayCustomer);
 
         }
     }

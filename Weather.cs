@@ -13,6 +13,7 @@ namespace Lemonade_Stand
         int temperature;
         string weather;
 
+
         //Constructor
 
         //Can do
