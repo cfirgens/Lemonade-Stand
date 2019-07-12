@@ -8,9 +8,6 @@ namespace Lemonade_Stand
 {
     class Player
     {
-        int lemons;
-        int sugar;
-        int iceCubes;
         double money;
 
         public double Money

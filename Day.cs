@@ -12,10 +12,8 @@ namespace Lemonade_Stand
         int todayCustomer;
 
         public Day(string weather)
-        {
-            
+        {            
             Console.WriteLine("Today's weather is " + weather + " predicted number of customers are: " + todayCustomer);
-
         }
     }
 }

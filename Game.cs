@@ -9,12 +9,13 @@ namespace Lemonade_Stand
     class Game
     {
         List<Customer> Customers = new List<Customer>();
-        Random rng;
+        
 
         public void RunGame()
         {
             
-            Weather weather = new Weather();            
+            Weather weather = new Weather();
+            Player player = new Player();
 
             weather.GetPredictedWeather();
             Console.WriteLine("Today's predicted weather is: " + weather.GetPredictedWeather());
@@ -30,10 +31,12 @@ namespace Lemonade_Stand
             //recipe.GetRecipe();
 
             GetCustomers();
-            Store store = new Store();
+            Store store = new Store();            
+            store.GoShopping(player.Money);
 
-            store.GoShopping(20.00);
+            double total = store.AddCost();
 
+            Console.WriteLine("$" + total);
 
             Console.ReadLine();
         }

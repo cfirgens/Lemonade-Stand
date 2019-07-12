@@ -122,23 +122,23 @@ namespace Lemonade_Stand
                 if (itemSelecter == "lemons" || itemSelecter == "Lemons")
                 {
                     double lemonQuantity = SellLemonsQuantity();
-                    lemonCost = lemonQuantity * lemonPrice;
+                    lemonCost = (lemonQuantity / 10) * lemonPrice;
 
                 }
                 else if (itemSelecter == "sugar" || itemSelecter == "Sugar")
                 {
                     double sugarQunatity = SellSugarQuantity();
-                    sugarCost = sugarQunatity * sugarPrice;
+                    sugarCost = (sugarQunatity / 12) * sugarPrice;
                 }
                 else if (itemSelecter == "ice" || itemSelecter == "Ice")
                 {
                     double iceQuantity = SellIceQuantity();
-                    iceCost = iceQuantity * iceCubePrice;
+                    iceCost = (iceQuantity / 100) * iceCubePrice;
                 }
                 else if (itemSelecter == "cups" || itemSelecter == "Cups")
                 {
                     double cupQuantity = SellCupsQuantity();
-                    cupCost = cupQuantity * cupPrice;
+                    cupCost = (cupQuantity / 25) * cupPrice;
                 }
                 else if (itemSelecter == "quit" || itemSelecter == "Quit")
                 {
@@ -152,6 +152,13 @@ namespace Lemonade_Stand
             }
         
 
+        }
+
+
+        public double  AddCost()
+        {
+            cost = cupCost + iceCost + lemonCost + sugarCost;
+            return cost;
         }
 
 
