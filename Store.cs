@@ -10,41 +10,38 @@ namespace Lemonade_Stand
     {
         double lemonPrice;
         double sugarPrice;
-        double iceCubePrice;
+        double icePrice;
         double cupPrice;
-        int lemonQuantity;
-        int sugarQuantity;
-        int iceQuantity;
-        int cupQuantity;
-        double cost;
-        double lemonCost;
-        double sugarCost;
-        double iceCost;
-        double cupCost;
+        double lemonQuantity;
+        double sugarQuantity;
+        double iceQuantity;
+        double cupQuantity;
+        double lemonPackage;
+        double icePackage;
+        double cupPackage;
+        double sugarPackage;
 
         public Store()
         {
             lemonPrice = 1.00;
             sugarPrice = 1.00;
             cupPrice = 1.00;
-            iceCubePrice = 1.00;
-            lemonCost = 0;
-            sugarCost = 0;
-            iceCost = 0;
-            cupCost = 0;
+            icePrice = 1.00;
+            lemonPackage = 10;
+            icePackage = 100;
+            cupPackage = 25;
+            sugarPackage = 12;
         }
-
-        public int SellSugarQuantity()
+                
+        public double SellSugarQuantity()
         {
             Console.WriteLine("How many bags of sugar would you like to buy? Every bag contains 12 cups of sugar and costs $1.00");
             try
             {
-                int sugarInput = int.Parse(Console.ReadLine());
-                //double sugarCost = sugarInput * sugarPrice;
-                sugarQuantity = sugarInput * 12;
-                return sugarQuantity;
-
-                
+                double sugarInput = double.Parse(Console.ReadLine());
+                sugarQuantity = sugarInput * sugarPackage;
+                Inventory.sugar = sugarQuantity;
+                return sugarQuantity;                
             }
             catch
             {
@@ -53,14 +50,14 @@ namespace Lemonade_Stand
             }
         }
 
-        public int SellLemonsQuantity()
+        public double SellLemonsQuantity()
         {
             Console.WriteLine("How many bags of lemons would you like to buy? Every bag contains 10 lemons and costs $1.00");
             try
             {
-                int lemonInput = int.Parse(Console.ReadLine());
-                //double lemonCost = lemonInput * lemonPrice;
-                lemonQuantity = lemonInput * 10;
+                double lemonInput = double.Parse(Console.ReadLine());
+                lemonQuantity = lemonInput * lemonPackage;
+                Inventory.lemons = lemonQuantity;
                 return lemonQuantity;
             }
             catch
@@ -69,16 +66,15 @@ namespace Lemonade_Stand
                 return SellLemonsQuantity();
             }
         }
-        public int SellIceQuantity()
+        public double SellIceQuantity()
         {
             Console.WriteLine("How many bags of ice would you like to buy? Every bag contains 100 ice cubes and costs $1.00");
             try
             {
-                int iceInput = int.Parse(Console.ReadLine());
-                //double iceCost = iceInput * icePrice;
-                iceQuantity = iceInput * 100;
+                double iceInput = double.Parse(Console.ReadLine());
+                iceQuantity = iceInput * icePackage;
+                Inventory.iceCubes = iceQuantity;
                 return iceQuantity;
-
             }
             catch
             {
@@ -87,17 +83,15 @@ namespace Lemonade_Stand
             }
         }
 
-        public int SellCupsQuantity()
+        public double SellCupsQuantity()
         {
             Console.WriteLine("How many boxes of cups would you like to buy? Every box contains 25 cups and costs $1.00");
             try
             {
-                int cupsInput = int.Parse(Console.ReadLine());
-                //double cupCost = cupsInput * cupPrice;
-                cupQuantity = cupsInput * 25;
+                double cupsInput = double.Parse(Console.ReadLine());
+                cupQuantity = cupsInput * cupPackage;
+                Inventory.cups = cupQuantity;
                 return cupQuantity;
-
-
             }
             catch
             {
@@ -106,8 +100,13 @@ namespace Lemonade_Stand
             }
         }
 
-
-        public void GoShopping(double playerMoney)
+        public double SellIngrediant(Func<double> ingrediantQuantity, double package, double price)
+        {
+            double quantity = ingrediantQuantity();
+            double resultCost = (quantity / package) * price;
+            return resultCost;
+        }
+        public void GoShopping(Player player)
         {
             bool loop;
             loop = false;
@@ -115,30 +114,30 @@ namespace Lemonade_Stand
 
             while (loop == false)
             {
-                Console.WriteLine("Which item would you like to purchase? Enter : Lemons, Sugar, Ice or Cups.Or type quit to exit");     
+                Console.WriteLine("Which item would you like to purchase? Enter : Lemons, Sugar, Ice or Cups. Or type quit to exit");     
                 
                 string itemSelecter = Console.ReadLine();
 
                 if (itemSelecter == "lemons" || itemSelecter == "Lemons")
                 {
-                    double lemonQuantity = SellLemonsQuantity();
-                    lemonCost = (lemonQuantity / 10) * lemonPrice;
+                    player.Money -= SellIngrediant(SellLemonsQuantity, lemonPackage, lemonPrice);
+                    Console.WriteLine("You have " + player.Money + " dollars left.\n");
 
                 }
                 else if (itemSelecter == "sugar" || itemSelecter == "Sugar")
                 {
-                    double sugarQunatity = SellSugarQuantity();
-                    sugarCost = (sugarQunatity / 12) * sugarPrice;
+                    player.Money -= SellIngrediant(SellSugarQuantity, sugarPackage, sugarPrice);
+                    Console.WriteLine("You have " + player.Money + " dollars left.\n");
                 }
                 else if (itemSelecter == "ice" || itemSelecter == "Ice")
                 {
-                    double iceQuantity = SellIceQuantity();
-                    iceCost = (iceQuantity / 100) * iceCubePrice;
+                    player.Money -= SellIngrediant(SellIceQuantity, icePackage, icePrice);
+                    Console.WriteLine("You have " + player.Money + " dollars left.\n");
                 }
                 else if (itemSelecter == "cups" || itemSelecter == "Cups")
                 {
-                    double cupQuantity = SellCupsQuantity();
-                    cupCost = (cupQuantity / 25) * cupPrice;
+                    player.Money -= SellIngrediant(SellCupsQuantity, cupPackage, cupPrice);
+                    Console.WriteLine("You have " + player.Money + " dollars left.\n");
                 }
                 else if (itemSelecter == "quit" || itemSelecter == "Quit")
                 {
@@ -146,21 +145,12 @@ namespace Lemonade_Stand
                 }
                 else
                 {
-                    Console.WriteLine("Did not recognize that input");
-                    GoShopping(playerMoney);
+                    Console.WriteLine("Did not recognize that input \n");
+                    GoShopping(player);
                 }
-            }
-        
+            }      
 
         }
-
-
-        public double  AddCost()
-        {
-            cost = cupCost + iceCost + lemonCost + sugarCost;
-            return cost;
-        }
-
-
+               
     }
 }

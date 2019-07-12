@@ -10,8 +10,8 @@ namespace Lemonade_Stand
     {
 
         //Has
-        int temperature;
-        string weather;
+        public int temperature;
+        public string weather;
 
 
         //Constructor

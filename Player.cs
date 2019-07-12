@@ -9,6 +9,12 @@ namespace Lemonade_Stand
     class Player
     {
         double money;
+        Inventory inventory;
+
+        public Player()
+        {
+            money = 20.00;
+        }
 
         public double Money
         {

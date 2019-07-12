@@ -8,11 +8,11 @@ namespace Lemonade_Stand
 {
     public class Recipe
     {
-        double price = .50;
-        int howManyLemons = 4;
-        int howMuchSugar = 4;
-        int howMuchIce = 4;
-        string taste;
+        public double price = .50;
+        public int howManyLemons = 4;
+        public int howMuchSugar = 4;
+        public int howMuchIce = 4;
+        public string taste;
         
         public double GetPrice()
         {

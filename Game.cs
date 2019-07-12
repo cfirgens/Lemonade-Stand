@@ -9,11 +9,11 @@ namespace Lemonade_Stand
     class Game
     {
         List<Customer> Customers = new List<Customer>();
-        
+        //Random rng;
 
         public void RunGame()
         {
-            
+
             Weather weather = new Weather();
             Player player = new Player();
 
@@ -27,19 +27,19 @@ namespace Lemonade_Stand
             Recipe recipe = new Recipe();
 
             Console.ReadLine();
-
-            //recipe.GetRecipe();
-
+            Customer customer = new Customer(rng);
             GetCustomers();
-            Store store = new Store();            
-            store.GoShopping(player.Money);
+            Store store = new Store();
+            store.GoShopping(player);
+            // recipe.GetRecipe();
 
-            double total = store.AddCost();
+            //PurchaseLemonade(recipe.taste, weather.temperature, weather.weather, recipe.price, recipe.howMuchIce, customer.tastePreference, customer.weatherPreference, customer.pricePreference);
 
-            Console.WriteLine("$" + total);
-
+            Console.WriteLine("$" + player.Money);
+            Console.WriteLine("ice " +  Inventory.iceCubes+ ", lemons " +  Inventory.lemons + ", sugar " + Inventory.sugar + ", cups " + Inventory.cups);
             Console.ReadLine();
         }
+
 
         public void GetCustomers()
         {
@@ -53,6 +53,19 @@ namespace Lemonade_Stand
                 Customers.Add(customer);
             }
 
-        }   
+        }
+
+
+        public void CustomerPurchase(int numberOfCustomers)
+        {
+            for (int i = 0; i < numberOfCustomers - 1; i++)
+            {
+                
+
+            }         
+                
+                   
+
+        }
     }
 }
