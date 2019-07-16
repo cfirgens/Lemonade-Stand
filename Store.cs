@@ -106,38 +106,42 @@ namespace Lemonade_Stand
             double resultCost = (quantity / package) * price;
             return resultCost;
         }
-        public void GoShopping(Player player)
+        public void GoShopping()
         {
             bool loop;
             loop = false;
-            Console.WriteLine("Welcome to the shop!");
+            Console.WriteLine("\nWelcome to the shop!\nYou currently have $" + Player.money + " to spend.");
 
             while (loop == false)
             {
-                Console.WriteLine("Which item would you like to purchase? Enter : Lemons, Sugar, Ice or Cups. Or type quit to exit");     
+                Console.WriteLine("\nWhich item would you like to purchase? Enter : Lemons, Sugar, Ice or Cups. Or type inventory to view inventory or quit to exit the shop");     
                 
                 string itemSelecter = Console.ReadLine();
 
                 if (itemSelecter == "lemons" || itemSelecter == "Lemons")
                 {
-                    player.Money -= SellIngrediant(SellLemonsQuantity, lemonPackage, lemonPrice);
-                    Console.WriteLine("You have " + player.Money + " dollars left.\n");
+                    Player.money -= SellIngrediant(SellLemonsQuantity, lemonPackage, lemonPrice);
+                    Console.WriteLine("You have " + Player.money + " dollars left.\n");
 
                 }
                 else if (itemSelecter == "sugar" || itemSelecter == "Sugar")
                 {
-                    player.Money -= SellIngrediant(SellSugarQuantity, sugarPackage, sugarPrice);
-                    Console.WriteLine("You have " + player.Money + " dollars left.\n");
+                    Player.money -= SellIngrediant(SellSugarQuantity, sugarPackage, sugarPrice);
+                    Console.WriteLine("You have " + Player.money + " dollars left.\n");
                 }
                 else if (itemSelecter == "ice" || itemSelecter == "Ice")
                 {
-                    player.Money -= SellIngrediant(SellIceQuantity, icePackage, icePrice);
-                    Console.WriteLine("You have " + player.Money + " dollars left.\n");
+                    Player.money -= SellIngrediant(SellIceQuantity, icePackage, icePrice);
+                    Console.WriteLine("You have " + Player.money + " dollars left.\n");
                 }
                 else if (itemSelecter == "cups" || itemSelecter == "Cups")
                 {
-                    player.Money -= SellIngrediant(SellCupsQuantity, cupPackage, cupPrice);
-                    Console.WriteLine("You have " + player.Money + " dollars left.\n");
+                    Player.money -= SellIngrediant(SellCupsQuantity, cupPackage, cupPrice);
+                    Console.WriteLine("You have " + Player.money + " dollars left.\n");
+                }
+                else if (itemSelecter =="inventory" || itemSelecter == "Inventory")
+                {
+                    Inventory.DisplayInventory();
                 }
                 else if (itemSelecter == "quit" || itemSelecter == "Quit")
                 {
@@ -146,7 +150,7 @@ namespace Lemonade_Stand
                 else
                 {
                     Console.WriteLine("Did not recognize that input \n");
-                    GoShopping(player);
+                    GoShopping();
                 }
             }      
 

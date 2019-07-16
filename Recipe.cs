@@ -8,15 +8,27 @@ namespace Lemonade_Stand
 {
     public class Recipe
     {
-        public double price = .50;
-        public int howManyLemons = 4;
-        public int howMuchSugar = 4;
-        public int howMuchIce = 4;
-        public string taste;
-        
+        static public double price = .50;
+        static public int howManyLemons = 4;
+        static public int howMuchSugar = 4;
+        static public int howMuchIce = 4;
+        static public string taste;
+
+        public int HowManyLemons { get; set; }
+        public int HowMuchIce { get; set; }
+        public int HowMuchSugar { get; set; }
+        public string Taste { get; set; }
+        public double Price { get; set; }
+
+
+        public Recipe()
+        {
+            GetRecipe();
+        }
+
         public double GetPrice()
         {
-            Console.WriteLine("How much would you like to charge? Default price is $0.50");
+            Console.WriteLine("\nHow much would you like to charge? Default price is $0.50");
             try
             {
                 return price = double.Parse(Console.ReadLine());
@@ -91,11 +103,6 @@ namespace Lemonade_Stand
             GetLemons();
             GetSugar();
             GetTaste();
-            Console.WriteLine("sugar: " + howMuchSugar);
-            Console.WriteLine("price: " + price);
-            Console.WriteLine("lemons: " + howManyLemons);
-            Console.WriteLine("ice: " + howMuchIce);
-            Console.WriteLine("taste: " + taste);
         }
     }
 }

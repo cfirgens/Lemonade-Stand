@@ -30,8 +30,8 @@ namespace Lemonade_Stand
             int tasteRandom = rng.Next(0, 2);
             tastePreference = taste[tasteRandom];
 
-            List<int> temperature = new List<int>() { 60, 70, 80, 90 };
-            int temperatureRandom = rng.Next(0, 3);
+            List<int> temperature = new List<int>() { 50, 60, 70, 80, 90 };
+            int temperatureRandom = rng.Next(0, 4);
             temperaturePreference = temperature[temperatureRandom];
 
             List<int> ice = new List<int>() { 3, 4, 5, 6, 7, 8 };
@@ -47,67 +47,74 @@ namespace Lemonade_Stand
             pricePreference = price[priceRandom];
         }
 
-
-        //Can do
-
-        // public bool PurchaseLemonade(double price, string taste, int temperature, string weather, int iceCount);
-
-
-        public bool PurchaseLemonade(string taste, int temperature, string weather, double price, int iceCount, string customerTaste, string customerWeatherPreference, double customerMaxPrice)
+         
+        public void PurchaseLemonade(int temperature, string weather)
         {
             int purchaseOdds = 0;
 
-            if (temperature>80 && iceCount > 8)
+            if (Inventory.lemons == 0 || Inventory.cups == 0 || Inventory.sugar == 0 || Inventory.iceCubes == 0)
             {
-                purchaseOdds = +1;
-            }
-            if (customerTaste == taste)
-            {
-                purchaseOdds = +1;
-            }
-            if (weather == customerWeatherPreference)
-            {
-                purchaseOdds = +1;
-            }
-            if (price < customerMaxPrice)
-            {
-                purchaseOdds = +1;
-            }
-
-            if(purchaseOdds == 3 || purchaseOdds == 4)
-            {
-                return true;
-            }
-            else if( purchaseOdds == 2)
-            {
-                int roll = new Random().Next(0, 1);
-                if(roll == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else if ( purchaseOdds == 1)
-            {
-                int roll = new Random().Next(0, 3);
-                if (roll == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }             
+                Console.WriteLine("You're out of materials for the day.");
             }
             else
             {
-                return false;
+                if (temperature > 80 && Recipe.howMuchIce > 6)
+                {
+                    purchaseOdds = +1;
+                }
+                if (tastePreference == Recipe.taste)
+                {
+                    purchaseOdds = +1;
+                }
+                if (weather == weatherPreference)
+                {
+                    purchaseOdds = +1;
+                }
+                if (Recipe.price < pricePreference)
+                {
+                    purchaseOdds = +1;
+                }
+
+                if (purchaseOdds == 3 || purchaseOdds == 4)
+                {
+                    BuyLemonade();
+
+                    Console.WriteLine("Lemonade sold");
+                }
+                else if (purchaseOdds == 2)
+                {
+                    int roll = new Random().Next(0, 1);
+                    if (roll == 0)
+                    {
+                        BuyLemonade();
+                        Console.WriteLine("Lemonade sold");
+                    }
+
+                }
+                else if (purchaseOdds == 1)
+                {
+                    int roll = new Random().Next(0, 3);
+                    if (roll == 0)
+                    {
+                        BuyLemonade();
+
+                        Console.WriteLine("Lemonade sold");
+                    }
+                }
             }
+
         }
 
 
+        public void BuyLemonade()
+        {
+
+            Inventory.cups = (Inventory.cups - 1);
+            Inventory.lemons = (Inventory.lemons - Recipe.howManyLemons);
+            Inventory.iceCubes = (Inventory.iceCubes - Recipe.howMuchIce);
+            Inventory.sugar = (Inventory.sugar - Recipe.howMuchSugar);
+            Player.startingMoney = (Player.startingMoney + Recipe.price);
+            Player.money = (Player.money + Recipe.price);
+        }
     }
 }

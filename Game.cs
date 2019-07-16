@@ -8,64 +8,79 @@ namespace Lemonade_Stand
 {
     class Game
     {
-        List<Customer> Customers = new List<Customer>();
-        //Random rng;
-
         public void RunGame()
         {
-
-            Weather weather = new Weather();
+            GameHeader();
             Player player = new Player();
+            GameInstructions();
 
-            weather.GetPredictedWeather();
-            Console.WriteLine("Today's predicted weather is: " + weather.GetPredictedWeather());
-            string actualWeather = weather.GetActualWeather();
-            Console.WriteLine("Today's actual weather is: " + weather.GetActualWeather());
+            int i;
+            i = 0 ;
+            int daysPlaying;
+            daysPlaying = 7;
 
-            Day day = new Day(actualWeather);
-
-            Recipe recipe = new Recipe();
-
-            Console.ReadLine();
-            Customer customer = new Customer(rng);
-            GetCustomers();
-            Store store = new Store();
-            store.GoShopping(player);
-            // recipe.GetRecipe();
-
-            //PurchaseLemonade(recipe.taste, weather.temperature, weather.weather, recipe.price, recipe.howMuchIce, customer.tastePreference, customer.weatherPreference, customer.pricePreference);
-
-            Console.WriteLine("$" + player.Money);
-            Console.WriteLine("ice " +  Inventory.iceCubes+ ", lemons " +  Inventory.lemons + ", sugar " + Inventory.sugar + ", cups " + Inventory.cups);
-            Console.ReadLine();
-        }
-
-
-        public void GetCustomers()
-        {
-            Random rng = new Random();
-            int numberOfCustomers;
-            numberOfCustomers = rng.Next(75,110);
-
-            for ( int i=0; i < numberOfCustomers; i++)
+            while (i < daysPlaying)
             {
-                Customer customer = new Customer(rng);
-                Customers.Add(customer);
+                Day day = new Day(player);
+                i++;
             }
 
+
         }
 
 
-        public void CustomerPurchase(int numberOfCustomers)
+        public void GameInstructions()
         {
-            for (int i = 0; i < numberOfCustomers - 1; i++)
+            Console.WriteLine("Do you know how to play? Yes or no");
+            string displayInstructions;
+            displayInstructions = Console.ReadLine();
+            try
             {
-                
+                if (displayInstructions == "no" || displayInstructions == "n")
+                {
+                    Console.WriteLine("Operate your lemonade stand through various weather, change your prices to make more money and stock up on supplies before you run out." +
+                        " Winning the game is not the goal. Instead the goal is to make as much money as possible during your 7 days open. \nThere are a variety ways to do this but paying attention" +
+                        "to the weather, and ensuring your price is right is key. \nAt the end of each day, your ice will melt and your sugar and/or lemons may go bad after a day or two. \nIf you run out of supplies," +
+                        "your store will close for the day and customers won't be able to buy any product from you. Good luck!");
+                    Console.ReadLine();
+                }
 
-            }         
-                
-                   
+            }
+            catch
+            {
+                Console.WriteLine("Please enter a valid response");
+                GameInstructions();
+            }
+        }
+
+
+        public void GameHeader()
+        {
+            Console.Title = "Lemonade Stand";
+            string title = @"
+ _        _______  _______  _______  _        _______  ______   _______ 
+( \      (  ____ \(       )(  ___  )( (    /|(  ___  )(  __  \ (  ____ \
+| (      | (    \/| () () || (   ) ||  \  ( || (   ) || (  \  )| (    \/
+| |      | (__    | || || || |   | ||   \ | || (___) || |   ) || (__    
+| |      |  __)   | |(_)| || |   | || (\ \) ||  ___  || |   | ||  __)   
+| |      | (      | |   | || |   | || | \   || (   ) || |   ) || (      
+| (____/\| (____/\| )   ( || (___) || )  \  || )   ( || (__/  )| (____/\
+(_______/(_______/|/     \|(_______)|/    )_)|/     \|(______/ (_______/
+                                                                        
+ _______ _________ _______  _        ______  
+(  ____ \\__   __/(  ___  )( (    /|(  __  \ 
+| (    \/   ) (   | (   ) ||  \  ( || (  \  )
+| (_____    | |   | (___) ||   \ | || |   ) |
+(_____  )   | |   |  ___  || (\ \) || |   | |
+      ) |   | |   | (   ) || | \   || |   ) |
+/\____) |   | |   | )   ( || )  \  || (__/  )
+\_______)   )_(   |/     \||/    )_)(______/ 
+                                             ";
+            Console.WriteLine(title);
+
+            Console.ReadLine();
 
         }
+
     }
 }

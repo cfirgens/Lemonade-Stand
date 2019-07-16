@@ -12,10 +12,62 @@ namespace Lemonade_Stand
         static public double iceCubes;
         static public double sugar;
         static public double cups;
-        public double Lemons { get; set; }
-        public double IceCubes { get; set; }
-        public double Sugar { get; set; }
-        public double Cups { get; set; }
+        public double Lemons
+        {
+            get => lemons;
+
+            set
+            {
+                if(value <= 0)
+                {
+                    lemons = 0;
+                    Console.WriteLine("You've sold out of lemons!");
+                }
+                else { lemons = value; }
+            }
+        }
+        public double IceCubes
+        {
+            get => iceCubes;
+
+            set
+            {
+                if (value <= 0)
+                {
+                    iceCubes = 0;
+                    Console.WriteLine("You've ran out of ice cubes!");
+                }
+                else { iceCubes = value; }
+            }
+        }
+        public double Sugar
+        {
+            get => sugar;
+
+            set
+            {
+                if (value <= 0)
+                {
+                    sugar = 0;
+                    Console.WriteLine("You've sold out of sugar!");
+                }
+                else { sugar = value; }
+            }
+        }
+        public double Cups
+        {
+            get => cups;
+
+            set
+            {
+                if (value <= 0)
+                {
+                    cups = 0;
+                    Console.WriteLine("You've ran out of cups!");
+                }
+                else { cups = value; }
+            }
+        }
 
         public Inventory()
         {
@@ -24,17 +76,11 @@ namespace Lemonade_Stand
             sugar = 0;
         }
 
-
-        public void EndDayInventoryLoss()
+        public static void DisplayInventory()
         {
-            iceCubes = 0;
-            double roll = new Random().Next(0, 4);
-            double inventoryLoss = new Random().Next(1, 3);
-            if (roll == 0)
-            {
-                lemons = -inventoryLoss;
-                sugar -= inventoryLoss;
-            }
+
+            Console.WriteLine("Your current inventory is as follows: Ice: " + Inventory.iceCubes + ", Lemons: " + Inventory.lemons + ", Sugar: " + Inventory.sugar + ", Cups: " + Inventory.cups);
         }
+                      
     }
 }
