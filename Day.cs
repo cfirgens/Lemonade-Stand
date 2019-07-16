@@ -40,6 +40,8 @@ namespace Lemonade_Stand
             EndOfDayStats();
                        
         }
+
+        // Singularity responsibility - Generating customers and adding them into a list.
         public void GetCustomers()
         {
             Random rng = new Random();

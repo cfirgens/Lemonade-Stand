@@ -14,15 +14,17 @@ namespace Lemonade_Stand
             Player player = new Player();
             GameInstructions();
 
-            int i;
-            i = 0 ;
+
+            // O in solid - open to playing more days based on what the number of days playing is.
+            int daysToPlay;
+            daysToPlay = 0 ;
             int daysPlaying;
             daysPlaying = 7;
 
             while (i < daysPlaying)
             {
                 Day day = new Day(player);
-                i++;
+                daysToPlay++;
             }
 
 

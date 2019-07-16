@@ -20,6 +20,7 @@ namespace Lemonade_Stand
 
         //Can do
 
+
         public string GetPredictedWeather()
         {
             weatherNumber = new Random().Next(1, 4);
